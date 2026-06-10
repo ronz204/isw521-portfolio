@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Monitoreo Hídrico — AcueductosIoT</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- =============================================
+       EJERCICIO 1 — Barra de Navegación
+       justify-content: space-between + align-items: center
+  ================================================ -->
+  <nav class="navbar">
+    <div class="navbar__logo">
+      💧 AcueductosIoT
+    </div>
+    <ul class="navbar__links">
+      <li><a href="#" class="navbar__link">Inicio</a></li>
+      <li><a href="#" class="navbar__link">Sensores</a></li>
+      <li><a href="#" class="navbar__link">Alertas</a></li>
+      <li><a href="#" class="navbar__link">Reportes</a></li>
+    </ul>
+    <button class="navbar__btn-logout">Cerrar Sesión</button>
+  </nav>
+
+  <!-- =============================================
+       EJERCICIO 3 — Layout de 3 columnas
+       flex: 1 / flex: 3 / flex: 1
+  ================================================ -->
+  <div class="layout">
+
+    <!-- Sidebar izquierdo -->
+    <aside class="sidebar">
+      <nav>
+        <ul class="sidebar__menu">
+          <li class="sidebar__item">📊 Resumen</li>
+          <li class="sidebar__item">💧 Tanques</li>
+          <li class="sidebar__item">⚡ Presiones</li>
+          <li class="sidebar__item">🧪 Calidad</li>
+          <li class="sidebar__item">⚙️ Configuración</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <h2 class="main-content__title">Gráficos de Monitoreo en Tiempo Real</h2>
+      <p class="main-content__subtitle">[ Aquí irían los gráficos del IoT ]</p>
+
+      <!-- =============================================
+           EJERCICIO 2 — Cuadrícula de Sensores
+           flex-wrap: wrap + gap + flex-basis
+      ================================================ -->
+      <section class="sensor-grid">
+
+        <div class="sensor-card">
+          <h3 class="sensor-card__title">💧 Nivel de Tanque Principal</h3>
+          <p class="sensor-card__value">73%</p>
+          <p class="sensor-card__label">Sector A — Actualizado hace 2 min</p>
+        </div>
+
+        <div class="sensor-card">
+          <h3 class="sensor-card__title">🔩 Presión de Red</h3>
+          <p class="sensor-card__value">42 PSI</p>
+          <p class="sensor-card__label">Calle 2 — PSI actual vs. mínimo 30</p>
+        </div>
+
+        <div class="sensor-card">
+          <h3 class="sensor-card__title">🧪 Calidad del Agua</h3>
+          <p class="sensor-card__value">0.8 mg/L</p>
+          <p class="sensor-card__label">Cloro residual — En rango normal</p>
+        </div>
+
+        <div class="sensor-card">
+          <h3 class="sensor-card__title">🌊 Caudal de Entrada</h3>
+          <p class="sensor-card__value">320 L/min</p>
+          <p class="sensor-card__label">Naciente Sur — Actualizado hace 1 min</p>
+        </div>
+
+        <div class="sensor-card">
+          <h3 class="sensor-card__title">🌡️ Temperatura del Agua</h3>
+          <p class="sensor-card__value">18 °C</p>
+          <p class="sensor-card__label">Dentro del rango aceptable</p>
+        </div>
+
+        <div class="sensor-card sensor-card--alert">
+          <h3 class="sensor-card__title">🚨 Válvula de Emergencia</h3>
+          <p class="sensor-card__value">Abierta</p>
+          <p class="sensor-card__label">Estado actual — Revisión requerida</p>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Panel derecho de alertas -->
+    <aside class="alert-panel">
+      <h3 class="alert-panel__title">🔔 Alertas Activas</h3>
+      <div class="alert alert--warning">⚠️ Presión baja — Sector B</div>
+      <div class="alert alert--ok">✅ Cloro en rango normal</div>
+      <div class="alert alert--warning">⚠️ Nivel tanque bajo — Sector C</div>
+      <div class="alert alert--ok">✅ Caudal estable — Naciente Sur</div>
+    </aside>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__item">© 2025 AcueductosIoT</div>
+    <div class="footer__item">Cooperativa de Acueductos Comunitarios — Guanacaste</div>
+    <div class="footer__item">ISW-521 · Lab #3</div>
+  </footer>
+
+</body>
+</html>

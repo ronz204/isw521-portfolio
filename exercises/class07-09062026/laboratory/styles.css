@@ -1,0 +1,327 @@
+/* ==============================================
+   ISW-521 · Laboratorio #3 — Flexbox Dashboard
+   styles.css — Metodología BEM
+   ============================================== */
+
+/* Reset básico */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #1a2a3a;
+}
+
+/* ==============================================
+   NAVBAR — Block
+   Concepto: justify-content: space-between separa
+   las tres zonas (logo / links / botón) empujándolas
+   a los extremos con el espacio sobrante entre ellas.
+   align-items: center las centra verticalmente.
+   ============================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  background-color: #1a3a5c;
+  color: #ffffff;
+  padding: 0 24px;
+  gap: 16px;
+}
+
+/* navbar__logo — Element */
+.navbar__logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* navbar__links — Element (lista de navegación) */
+.navbar__links {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+/* navbar__link — Element */
+.navbar__link {
+  color: #cce4ff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+/* navbar__link:hover — Modifier */
+.navbar__link:hover {
+  color: #ffffff;
+}
+
+/* navbar__btn-logout — Element */
+.navbar__btn-logout {
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+/* navbar__btn-logout:hover — Modifier */
+.navbar__btn-logout:hover {
+  background-color: #c0392b;
+}
+
+/* ==============================================
+   LAYOUT — Block
+   Concepto: flex: 1 / flex: 3 / flex: 1
+   El total de "porciones" es 5:
+     sidebar    = 1/5 del ancho
+     main       = 3/5 del ancho
+     alert-panel = 1/5 del ancho
+   ============================================== */
+.layout {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 60px);
+}
+
+/* ==============================================
+   SIDEBAR — Block
+   ============================================== */
+.sidebar {
+  flex: 1;
+  background-color: #1a2a3a;
+  color: #cce4ff;
+  padding: 24px 16px;
+  border-right: 1px solid #2a3a4a;
+}
+
+/* sidebar__menu — Element */
+.sidebar__menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+/* sidebar__item — Element */
+.sidebar__item {
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+/* sidebar__item:hover — Modifier */
+.sidebar__item:hover {
+  background-color: #2a3a4a;
+}
+
+/* ==============================================
+   MAIN-CONTENT — Block
+   ============================================== */
+.main-content {
+  flex: 3;
+  padding: 24px;
+  background-color: #f0f4f8;
+}
+
+/* main-content__title — Element */
+.main-content__title {
+  font-size: 1.4rem;
+  color: #1a3a5c;
+  margin-bottom: 4px;
+}
+
+/* main-content__subtitle — Element */
+.main-content__subtitle {
+  color: #6c8aa0;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+/* ==============================================
+   ALERT-PANEL — Block
+   ============================================== */
+.alert-panel {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 24px 16px;
+  border-left: 1px solid #dde4ea;
+}
+
+/* alert-panel__title — Element */
+.alert-panel__title {
+  font-size: 1rem;
+  color: #1a3a5c;
+  margin-bottom: 16px;
+}
+
+/* ==============================================
+   ALERT — Block
+   ============================================== */
+.alert {
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  margin-bottom: 10px;
+}
+
+/* alert--warning — Modifier */
+.alert--warning {
+  background-color: #fff3cd;
+  color: #7a4f00;
+  border-left: 4px solid #f0a500;
+}
+
+/* alert--ok — Modifier */
+.alert--ok {
+  background-color: #d4edda;
+  color: #1a5c2a;
+  border-left: 4px solid #28a745;
+}
+
+/* ==============================================
+   SENSOR-GRID — Block
+   Concepto: flex-wrap: wrap permite que las tarjetas
+   se envuelvan en múltiples líneas automáticamente.
+   gap: 16px reemplaza los hacks de margin.
+   flex-basis: calc(33.333% - 16px) garantiza que
+   entren exactamente 3 tarjetas por fila.
+   ============================================== */
+.sensor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ==============================================
+   SENSOR-CARD — Block
+   ============================================== */
+.sensor-card {
+  flex-basis: calc(33.333% - 16px);
+  background-color: #ffffff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s;
+}
+
+/* sensor-card:hover — Modifier */
+.sensor-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* sensor-card--alert — Modifier */
+.sensor-card--alert {
+  border-left: 4px solid #e74c3c;
+  background-color: #fff5f5;
+}
+
+/* sensor-card__title — Element */
+.sensor-card__title {
+  font-size: 0.95rem;
+  color: #1a3a5c;
+  margin-bottom: 10px;
+}
+
+/* sensor-card__value — Element */
+.sensor-card__value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a5c8c;
+  margin-bottom: 6px;
+}
+
+/* sensor-card__label — Element */
+.sensor-card__label {
+  font-size: 0.8rem;
+  color: #6c8aa0;
+}
+
+/* ==============================================
+   FOOTER — Block
+   ============================================== */
+.footer {
+  display: flex;
+  background-color: #1a2a3a;
+  color: #7a9ab8;
+  font-size: 0.8rem;
+  padding: 16px 24px;
+}
+
+/* footer__item — Element */
+.footer__item {
+  flex: 1;
+  text-align: center;
+}
+
+/* ==============================================
+   RESPONSIVE — Móvil (max-width: 768px)
+   ============================================== */
+@media (max-width: 768px) {
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* layout--mobile — Modifier */
+  .layout {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  /* sidebar--mobile y alert-panel--mobile — Modifiers */
+  .sidebar,
+  .alert-panel {
+    flex: none;
+    width: 100%;
+    min-height: auto;
+  }
+
+  /* main-content--mobile — Modifier */
+  .main-content {
+    flex: 1;
+  }
+
+  /* sensor-card--mobile — Modifier */
+  .sensor-card {
+    flex-basis: 100%;
+  }
+
+  /* footer--mobile — Modifier */
+  .footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* footer__item--mobile — Modifier */
+  .footer__item {
+    text-align: center;
+  }
+
+  /* navbar--mobile — Modifier */
+  .navbar {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+
+  /* navbar__links--mobile — Modifier */
+  .navbar__links {
+    gap: 12px;
+    font-size: 0.85rem;
+  }
+}
