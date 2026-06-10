@@ -50,5 +50,3 @@ function focusTrap(modalEl) {
   first.focus();
 }
 ```
-
-Para producción usa la librería `focus-trap` de npm que maneja edge cases. No reinventes la rueda.
