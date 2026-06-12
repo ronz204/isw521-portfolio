@@ -1,0 +1,183 @@
+/* ============================================================
+   interactions.css — Radio Button Hack + Variables CSS + Animaciones
+   ISW-521 · Lab 03
+   ============================================================ */
+
+/* ============================================================
+   @KEYFRAMES — Animación de paleta al cargar (OBLIGATORIO)
+   ============================================================ */
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   ANIMACIONES DE ENTRADA — Zona D (paleta) con delays escalonados
+   ============================================================ */
+.paint-swatch {
+  animation: floatIn 0.45s ease forwards;
+}
+
+.paint-swatch:nth-child(1) { animation-delay: 0.10s; }
+.paint-swatch:nth-child(2) { animation-delay: 0.20s; }
+.paint-swatch:nth-child(3) { animation-delay: 0.30s; }
+.paint-swatch:nth-child(4) { animation-delay: 0.40s; }
+.paint-swatch:nth-child(5) { animation-delay: 0.50s; }
+.paint-swatch:nth-child(6) { animation-delay: 0.60s; }
+.paint-swatch:nth-child(7) { animation-delay: 0.70s; }
+
+/* Entrada de zonas del layout */
+.zone-selector { animation: slideInLeft 0.5s ease 0.1s both; }
+.zone-vehicle  { animation: fadeUp     0.5s ease 0.15s both; }
+.zone-quote    { animation: slideInLeft 0.5s ease 0.2s both; animation-direction: reverse; }
+
+/* ============================================================
+   RADIO BUTTON HACK — CAMBIO DE COLOR DE CARROCERÍA
+   input:checked actualiza --car-color en el scope del grid
+   ============================================================ */
+#color-plata:checked   ~ .showroom-grid { --car-color: var(--color-plata);   }
+#color-rojo:checked    ~ .showroom-grid { --car-color: var(--color-rojo);    }
+#color-blanco:checked  ~ .showroom-grid { --car-color: var(--color-blanco);  }
+#color-negro:checked   ~ .showroom-grid { --car-color: var(--color-negro);   }
+#color-azul:checked    ~ .showroom-grid { --car-color: var(--color-azul);    }
+#color-verde:checked   ~ .showroom-grid { --car-color: var(--color-verde);   }
+#color-naranja:checked ~ .showroom-grid { --car-color: var(--color-naranja); }
+
+/* Feedback visual: swatch activo muestra borde brillante */
+#color-plata:checked   ~ .showroom-grid .paint-swatch--plata,
+#color-rojo:checked    ~ .showroom-grid .paint-swatch--rojo,
+#color-blanco:checked  ~ .showroom-grid .paint-swatch--blanco,
+#color-negro:checked   ~ .showroom-grid .paint-swatch--negro,
+#color-azul:checked    ~ .showroom-grid .paint-swatch--azul,
+#color-verde:checked   ~ .showroom-grid .paint-swatch--verde,
+#color-naranja:checked ~ .showroom-grid .paint-swatch--naranja {
+  border-color: #fff;
+  transform: scale(1.18);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
+}
+
+/* ============================================================
+   RADIO BUTTON HACK — CAMBIO DE ÁNGULO DE CÁMARA
+   Grid Overlay: 3 figuras en grid-area: 1/1, solo una visible
+   ============================================================ */
+
+/* Por defecto todas las figuras de ángulo son invisibles
+   (definido en layout.css: .angle { opacity: 0 })          */
+
+/* Corolla GR — ángulos */
+#angle-corolla-front:checked ~ .showroom-grid .corolla-display .angle.front { opacity: 1; }
+#angle-corolla-side:checked  ~ .showroom-grid .corolla-display .angle.side  { opacity: 1; }
+#angle-corolla-rear:checked  ~ .showroom-grid .corolla-display .angle.rear  { opacity: 1; }
+
+/* Hilux — ángulos */
+#angle-hilux-front:checked ~ .showroom-grid .hilux-display .angle.front { opacity: 1; }
+#angle-hilux-side:checked  ~ .showroom-grid .hilux-display .angle.side  { opacity: 1; }
+#angle-hilux-rear:checked  ~ .showroom-grid .hilux-display .angle.rear  { opacity: 1; }
+
+/* ============================================================
+   RADIO BUTTON HACK — SELECCIÓN DE MODELO (mostrar/ocultar)
+   Corolla visible cuando #model-corolla está checked
+   Hilux visible cuando #model-hilux está checked
+   ============================================================ */
+.corolla-display,
+.hilux-display {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  display: grid;
+}
+
+#model-corolla:checked ~ .showroom-grid .corolla-display { opacity: 1; pointer-events: auto; }
+#model-hilux:checked   ~ .showroom-grid .hilux-display   { opacity: 1; pointer-events: auto; }
+
+/* ============================================================
+   FEEDBACK VISUAL — Botones de modelo activo
+   ============================================================ */
+#model-corolla:checked ~ .showroom-grid .model-btn--corolla,
+#model-hilux:checked   ~ .showroom-grid .model-btn--hilux {
+  border-color: var(--accent);
+  background-color: var(--accent-dim);
+}
+
+#model-corolla:checked ~ .showroom-grid .model-btn--corolla .model-btn__name,
+#model-hilux:checked   ~ .showroom-grid .model-btn--hilux .model-btn__name {
+  color: var(--accent);
+}
+
+/* ============================================================
+   GRUPOS DE ÁNGULO — solo el grupo del modelo activo es visible
+   ============================================================ */
+.angle-group--corolla,
+.angle-group--hilux { display: none; }
+
+#model-corolla:checked ~ .showroom-grid .angle-group--corolla { display: flex; }
+#model-hilux:checked   ~ .showroom-grid .angle-group--hilux   { display: flex; }
+
+/* ============================================================
+   FEEDBACK VISUAL — Botones de ángulo activo (scoped por modelo)
+   ============================================================ */
+#angle-corolla-front:checked ~ .showroom-grid .angle-group--corolla .angle-btn--front,
+#angle-hilux-front:checked   ~ .showroom-grid .angle-group--hilux   .angle-btn--front,
+#angle-corolla-side:checked  ~ .showroom-grid .angle-group--corolla .angle-btn--side,
+#angle-hilux-side:checked    ~ .showroom-grid .angle-group--hilux   .angle-btn--side,
+#angle-corolla-rear:checked  ~ .showroom-grid .angle-group--corolla .angle-btn--rear,
+#angle-hilux-rear:checked    ~ .showroom-grid .angle-group--hilux   .angle-btn--rear {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+#angle-corolla-front:checked ~ .showroom-grid .angle-group--corolla .angle-btn--front .angle-btn__dot,
+#angle-hilux-front:checked   ~ .showroom-grid .angle-group--hilux   .angle-btn--front .angle-btn__dot,
+#angle-corolla-side:checked  ~ .showroom-grid .angle-group--corolla .angle-btn--side  .angle-btn__dot,
+#angle-hilux-side:checked    ~ .showroom-grid .angle-group--hilux   .angle-btn--side  .angle-btn__dot,
+#angle-corolla-rear:checked  ~ .showroom-grid .angle-group--corolla .angle-btn--rear  .angle-btn__dot,
+#angle-hilux-rear:checked    ~ .showroom-grid .angle-group--hilux   .angle-btn--rear  .angle-btn__dot {
+  background-color: var(--accent);
+}
+
+/* ============================================================
+   COTIZACIÓN — mostrar precios según modelo seleccionado
+   ============================================================ */
+.quote-corolla,
+.quote-hilux {
+  display: none;
+}
+
+#model-corolla:checked ~ .showroom-grid .quote-corolla { display: block; }
+#model-hilux:checked   ~ .showroom-grid .quote-hilux   { display: block; }
+
+/* ============================================================
+   HOVER STATES generales
+   ============================================================ */
+.model-btn:hover {
+  border-color: rgba(232, 197, 71, 0.4);
+  background-color: rgba(232, 197, 71, 0.05);
+}
+
+.angle-btn:hover {
+  border-color: rgba(232, 197, 71, 0.3);
+  color: var(--text-primary);
+}
+
+.angle-btn:hover .angle-btn__dot {
+  background-color: var(--accent);
+}

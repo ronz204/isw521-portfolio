@@ -1,0 +1,99 @@
+/* ============================================================
+   palette.css — Zona D: Paleta de colores con Flexbox
+   ISW-521 · Lab 03
+   ============================================================ */
+
+/* ============================================================
+   CONTENEDOR DE PALETA — 100% Flexbox
+   ============================================================ */
+.paint-palette {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.palette__label-text {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  margin-right: 6px;
+}
+
+/* ============================================================
+   SWATCH — cada muestra de color
+   Cada .paint-swatch es un <label> que envuelve un <input radio>
+   ============================================================ */
+.paint-swatch {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* La animación se define en interactions.css */
+  opacity: 0;
+}
+
+.paint-swatch:hover {
+  transform: scale(1.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Ocultar el input radio pero mantenerlo funcional */
+.paint-swatch input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Colores individuales de cada swatch */
+.paint-swatch--plata   { background-color: var(--color-plata); }
+.paint-swatch--rojo    { background-color: var(--color-rojo); }
+.paint-swatch--blanco  { background-color: var(--color-blanco); border-color: var(--border-color); }
+.paint-swatch--negro   { background-color: var(--color-negro); border-color: #444; }
+.paint-swatch--azul    { background-color: var(--color-azul); }
+.paint-swatch--verde   { background-color: var(--color-verde); }
+.paint-swatch--naranja { background-color: var(--color-naranja); }
+
+/* Tick de selección interno */
+.paint-swatch::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.0);
+  border: 2px solid rgba(255, 255, 255, 0.0);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Nombre del color — tooltip bajo el swatch */
+.paint-swatch__name {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.58rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.paint-swatch:hover .paint-swatch__name {
+  opacity: 1;
+}
